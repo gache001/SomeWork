@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-external-service
+spec:
+  selector:
+    app: myapp
+  type: LoadBalancer  # It accepts external request by assigning the service an external IP address.
+  ports:
+    - protocol: TCP
+      port: 8080              #service port
+      targetPort: 8080      #ContainerPort... where container is listening
+      nodePort: 35010   # The port where the external IP address would be opened. (Between 30000 & 32000 or so)
+
